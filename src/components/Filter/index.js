@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   InputSearch,
   WrapperFilter,
@@ -18,5 +19,8 @@ function Filter(props) {
     </WrapperFilter>
   );
 }
-
+Filter.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+};
 export default Filter;

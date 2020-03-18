@@ -8,6 +8,7 @@ export const Card = styled.article`
   padding: 15px;
   margin-top: 35px;
   position: relative;
+  word-break: break-word;
   h5 a {
     font-size: 24px;
     color: #244aa8;

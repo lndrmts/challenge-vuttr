@@ -54,10 +54,12 @@
     },
     {
       "title": "Leandro",
-      "link": "https://lndrmts.com",
+      "link": "teste.com.br",
       "description": "teste",
       "tags": [
-        "teste"
+        "teste",
+        "reactJS",
+        "react native"
       ],
       "id": 6
     }

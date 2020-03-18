@@ -5,6 +5,9 @@ import Filter from '../Filter';
 import AddTool from '../AddTool';
 import GlobalStyle from '../../styles/Global';
 
+import MessageError from '../Messages/Error';
+import MessageSucess from '../Messages/Sucess';
+
 import { Container, Title, SubTitle, DisplayFlex } from './styles';
 
 function App() {
@@ -13,6 +16,7 @@ function App() {
   const [removeTool, setRemoveTool] = useState(false);
   const [search, setSearch] = useState('');
   const [searchTagOnly, setSearchTagOnly] = useState('');
+  const [message, setMessage] = useState('');
 
   function closeModal() {
     setIsOpen(false);
@@ -20,6 +24,10 @@ function App() {
 
   function openModal() {
     setIsOpen(true);
+  }
+
+  function closeMessage() {
+    setMessage('');
   }
 
   // List all tools
@@ -43,16 +51,30 @@ function App() {
         api.get('/tools').then(response => {
           setTool(response.data);
           setIsOpen(false);
+          setMessage('success');
         });
+      })
+      .catch(e => {
+        setMessage('error');
+        setIsOpen(false);
+        console.log(e);
       });
   }
 
   // Remove Tool
   function handleRemoveTool(id) {
-    api.delete(`/tools/${id}`).then(() => {
-      setIsOpen(false);
-      setRemoveTool(true);
-    });
+    api
+      .delete(`/tools/${id}`)
+      .then(() => {
+        setIsOpen(false);
+        setRemoveTool(true);
+        setMessage('success');
+      })
+      .catch(e => {
+        setMessage('error');
+        setIsOpen(false);
+        console.log(e);
+      });
   }
 
   // Search
@@ -79,6 +101,8 @@ function App() {
   return (
     <>
       <GlobalStyle />
+      {message === 'success' && <MessageSucess closeMessage={closeMessage} />}
+      {message === 'error' && <MessageError closeMessage={closeMessage} />}
       <Container>
         <Title>VUTTR</Title>
         <SubTitle>Very Useful Tools to Remember</SubTitle>
