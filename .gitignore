@@ -11,6 +11,9 @@
 # production
 /build
 
+# server api
+/challenge-fake-api
+
 # misc
 .DS_Store
 .env.local
