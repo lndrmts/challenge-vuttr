@@ -6,12 +6,13 @@ import {
   LabelSearchByTags,
 } from './styles';
 
-function Filter() {
+function Filter(props) {
+  const { handleChange, handleInputChange } = props;
   return (
     <WrapperFilter>
-      <InputSearch />
+      <InputSearch onChange={handleChange} />
       <LabelSearchByTags>
-        <InputSearchByTags type="checkbox" />
+        <InputSearchByTags onChange={handleInputChange} type="checkbox" />
         Search in tags only
       </LabelSearchByTags>
     </WrapperFilter>

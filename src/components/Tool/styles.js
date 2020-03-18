@@ -8,10 +8,14 @@ export const Card = styled.article`
   padding: 15px;
   margin-top: 35px;
   position: relative;
-  h5 {
+  h5 a {
     font-size: 24px;
-    color: #170c3a;
+    color: #244aa8;
     margin: 0;
+    text-decoration: none;
+    &:hover {
+      color: #8f8a9b;
+    }
   }
   p {
     margin-top: 5px;
@@ -20,6 +24,7 @@ export const Card = styled.article`
 
 export const Tags = styled.p`
   margin-top: 15px;
+  color: #6554c0;
   strong + strong {
     margin-left: 10px;
   }

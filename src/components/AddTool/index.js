@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { Form, Input } from '@rocketseat/unform';
 
@@ -27,62 +28,66 @@ const customStyles = {
   },
 };
 
-function AddTool() {
-  const [modal, setModal] = useState(false);
-
-  function handleSubmit(data) {
-    console.log(data);
-    // { email: 'test@example.com', password: '123456' }
-  }
+function AddTool(props) {
+  const { handleSubmit, closeModal, openModal, modalIsOpen } = props;
 
   return (
     <>
-      <ButtonAdd onClick={() => setModal(true)}>+ Add</ButtonAdd>
-      <Modal style={customStyles} isOpen={modal} overlayClassName="overlay">
+      <ButtonAdd onClick={openModal}>+ Add</ButtonAdd>
+      <Modal
+        style={customStyles}
+        isOpen={modalIsOpen}
+        overlayClassName="overlay"
+        id="addNewTool"
+      >
         <h4>+ Add New Tool</h4>
         <ButtonModalClose
           type="button"
-          onClick={() => setModal(false)}
+          onClick={closeModal}
           aria-label="Close Modal"
         >
           <IconRemove />
         </ButtonModalClose>
 
         <Form onSubmit={handleSubmit} className="form">
-          <label htmlFor="toolName" className="form__label">
-            Tool name
+          <label htmlFor="title" className="form__label">
+            Tool name <span>*</span>
             <Input
-              id="toolName"
+              id="title"
               className="form__input"
-              name="toolName"
+              name="title"
               type="text"
+              required
             />
           </label>
-          <label htmlFor="toolLink" className="form__label">
-            Tool Link
+          <label htmlFor="link" className="form__label">
+            Tool Link <span>*</span>
             <Input
-              id="toolLink"
+              id="link"
               className="form__input"
-              name="toolLink"
+              name="link"
               type="text"
+              required
             />
           </label>
-          <label htmlFor="toolDescription">
-            Tool Description
+          <label htmlFor="description" className="form__label">
+            Tool Description <span>*</span>
             <Input
               multiline
               className="form__input"
-              name="toolDescription"
-              id="toolDescription"
+              name="description"
+              id="description"
+              required
             />
           </label>
-          <label htmlFor="toolLink" className="form__label">
-            Tags
+          <label htmlFor="tags" className="form__label">
+            Tags <span>*</span>
             <Input
-              id="toolTags"
+              id="tags"
               className="form__input"
-              name="toolTags"
+              name="tags"
               type="text"
+              required
             />
           </label>
           <button type="submit" className="form__button pull-right">
@@ -93,5 +98,12 @@ function AddTool() {
     </>
   );
 }
+
+AddTool.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  modalIsOpen: PropTypes.bool.isRequired,
+};
 
 export default AddTool;

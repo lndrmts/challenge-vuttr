@@ -37,6 +37,9 @@ export default createGlobalStyle`
     color: #170C3A;
     margin-bottom: 8px;
     display: block;
+    span {
+      color: #8F8A9B;
+    }
   }
   .form__button {
     background-color: #0DCB7D;

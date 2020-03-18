@@ -11,7 +11,7 @@ export const WrapperFilter = styled.section`
 
 export const InputSearch = styled.input.attrs(() => ({
   type: 'text',
-  placeholder: 'Digite o que está procurando…',
+  placeholder: 'Search',
 }))`
   background-color: #f5f4f6;
   border: 1px solid #ebeaed;

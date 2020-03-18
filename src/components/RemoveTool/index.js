@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { Form } from '@rocketseat/unform';
 import { ReactComponent as IconRemove } from '../../icons/iconRemove.svg';
-import { ButtonRemove, ButtonModalClose } from './styles';
+import { ButtonRemove } from './styles';
+
+Modal.setAppElement('#root');
 
 const customStyles = {
   overlay: {
@@ -24,35 +27,43 @@ const customStyles = {
   },
 };
 
-function RemoveTool() {
-  const [modal, setModal] = useState(false);
+function RemoveTool(props) {
+  const { handleRemoveTool, id } = props;
+  const [modalIsOpen, setIsOpen] = useState(false);
 
-  function handleSubmit(data) {
-    console.log(data);
-    // { email: 'test@example.com', password: '123456' }
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModal() {
+    setIsOpen(true);
   }
 
   return (
     <>
-      <ButtonRemove onClick={() => setModal(true)} aria-label="Remove">
+      <ButtonRemove onClick={openModal} aria-label="Remove">
         <IconRemove /> remove
       </ButtonRemove>
 
-      <Modal style={customStyles} isOpen={modal} overlayClassName="overlay">
+      <Modal
+        style={customStyles}
+        isOpen={modalIsOpen}
+        overlayClassName="overlay"
+      >
         <h4>x Remove Tool</h4>
         <p>Are you sure what to remove Tool Name</p>
-        <Form onSubmit={handleSubmit} className="form">
+        <Form className="form">
           <button
             type="button"
+            onClick={() => handleRemoveTool(id)}
             className="form__button danger pull-right"
-            onClick={() => setModal(false)}
           >
             Yes, remove
           </button>
           <button
             type="button"
             className="form__button pull-right"
-            onClick={() => setModal(false)}
+            onClick={closeModal}
           >
             Cancel
           </button>
@@ -61,5 +72,8 @@ function RemoveTool() {
     </>
   );
 }
-
+RemoveTool.propTypes = {
+  handleRemoveTool: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+};
 export default RemoveTool;

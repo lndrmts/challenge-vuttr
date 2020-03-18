@@ -1,25 +1,46 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import RemoveTool from '../RemoveTool';
 import { Card, Tags } from './styles';
 
-function Tool() {
+function Tool(props) {
+  const { title, description, link, tags } = props;
+  const { handleRemoveTool, openModal, closeModal, modalIsOpen, id } = props;
   return (
     <>
       <Card>
-        <RemoveTool />
-        <h5>Nome Tool</h5>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora unde
-          nulla labore repellat facilis. Incidunt corrupti a magni rerum nobis
-          voluptatem, praesentium perspiciatis quod! Quasi autem quos quo nisi
-          dolore.
-        </p>
+        <RemoveTool
+          handleRemoveTool={handleRemoveTool}
+          openModal={openModal}
+          closeModal={closeModal}
+          modalIsOpen={modalIsOpen}
+          id={id}
+        />
+        <h5>
+          <a href={link} title={title}>
+            {title}
+          </a>
+        </h5>
+        <p>{description}</p>
         <Tags>
-          <strong>#tags</strong>
-          <strong>#outra</strong>
+          {tags.map(tag => (
+            <strong key={tag}>#{tag}</strong>
+          ))}
         </Tags>
       </Card>
     </>
   );
 }
+
+Tool.propTypes = {
+  handleRemoveTool: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  modalIsOpen: PropTypes.bool.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  link: PropTypes.string,
+  tags: PropTypes.array.isRequired,
+  id: PropTypes.number.isRequired,
+};
 export default Tool;
