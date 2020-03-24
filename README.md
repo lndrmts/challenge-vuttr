@@ -10,7 +10,13 @@ Esta aplicação usa a seguinte API: https://gitlab.com/bossabox/challenge-fake-
 
 Então acesse o link acima e siga as instruções para rodar a API e depois volte aqui e continue.
 
-**Com a API configurada e rodando siga os seguintes passos**
+**Com a API configurada e rodando na sua Maquina você tem duas opções**
+
+#### Apenas acesse o link: https://challenge-vuttr.lndrmts.com/
+
+## ou
+
+#### Siga os passos abaixo para rodar a aplicação na sua maquina
 
 1 - Faça um Clone/Download deste repositório
 
